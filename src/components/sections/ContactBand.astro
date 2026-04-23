@@ -13,7 +13,6 @@ const t = messages.contact;
 const businessEmail = 'hello@unrealtalent.com';
 const businessPhoneHref = '+0000000000';
 const whatsappHref = socialProfiles.whatsapp;
-const formId = 'ut-contact-form';
 ---
 
 <section class="w-full scroll-mt-20 bg-white text-ut-text" id="contact" aria-labelledby="contact-heading">
@@ -48,7 +47,21 @@ const formId = 'ut-contact-form';
 				<p id="contact-form-note" class="mb-5 text-sm leading-normal text-slate-500">
 					{t.formNote}
 				</p>
-				<form class="m-0" id={formId} aria-describedby="contact-form-note">
+				<form
+					class="m-0"
+					name="business-inquiry"
+					method="POST"
+					data-netlify="true"
+					netlify-honeypot="bot-field"
+					aria-describedby="contact-form-note"
+				>
+					<input type="hidden" name="form-name" value="business-inquiry" />
+					<p class="hidden">
+						<label>
+							Do not fill this field if you are human:
+							<input name="bot-field" />
+						</label>
+					</p>
 					<div class="mb-4">
 						<label class="mb-1.5 block text-sm font-semibold" for="contact-name">{t.fields.name}</label>
 						<input
@@ -132,32 +145,3 @@ const formId = 'ut-contact-form';
 		</div>
 	</div>
 </section>
-
-<script
-	define:vars={{
-		businessEmail,
-		formId,
-		mailSubjectTpl: t.mailSubject,
-		LN: t.mailLines.name,
-		LR: t.mailLines.role,
-		LE: t.mailLines.email,
-		LC: t.mailLines.company,
-	}}
->
-	document.getElementById(formId)?.addEventListener('submit', (e) => {
-		e.preventDefault();
-		const form = e.currentTarget;
-		if (!(form instanceof HTMLFormElement)) return;
-		const data = new FormData(form);
-		const name = String(data.get('name') || '').trim();
-		const role = String(data.get('role') || '').trim();
-		const email = String(data.get('email') || '').trim();
-		const company = String(data.get('company') || '').trim();
-		const message = String(data.get('message') || '').trim();
-		const subject = encodeURIComponent(mailSubjectTpl.replace('{name}', name || '—'));
-		const body = encodeURIComponent(
-			[`${LN}: ${name}`, `${LR}: ${role}`, `${LE}: ${email}`, `${LC}: ${company}`, '', message].join('\n'),
-		);
-		window.location.href = `mailto:${businessEmail}?subject=${subject}&body=${body}`;
-	});
-</script>
