@@ -8,6 +8,7 @@ import AboutBand from '../../components/sections/AboutBand.astro';
 import ServicesBand from '../../components/sections/ServicesBand.astro';
 import PartnersBand from '../../components/sections/PartnersBand.astro';
 import ContactBand from '../../components/sections/ContactBand.astro';
+import PartnerCampaignsBand from '../../components/sections/PartnerCampaignsBand.astro';
 import { stats, talentRoster, brandLogos, partnerVideoSources } from '../../data/homepage';
 import { getMessages, type Lang } from '../../i18n';
 import { homePath, isLang, langs } from '../../i18n/paths';
@@ -50,7 +51,8 @@ const canonicalPath = homePath(lang);
 		<StatsGrid stats={statsRows} ariaLabel={messages.a11y.statsRegion} />
 		<AboutBand messages={messages} />
 		<ServicesBand talents={talentRoster} messages={messages} />
-		<PartnersBand brandLogos={brandLogos} messages={messages} partnerVideos={partnerVideos} />
+		<PartnerCampaignsBand messages={messages} partnerVideos={partnerVideos} />
+		<PartnersBand brandLogos={brandLogos} messages={messages} />
 		<ContactBand messages={messages} />
 	</main>
 	<SiteFooter lang={lang} messages={messages} />

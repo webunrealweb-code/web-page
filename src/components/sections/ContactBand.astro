@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import mainLogo from '../../assets/brand/UNREAL Main Logo.png';
 import type { Messages } from '../../i18n/types';
+import { socialProfiles } from '../../data/social';
 
 interface Props {
 	messages: Messages;
@@ -10,7 +11,8 @@ interface Props {
 const { messages } = Astro.props;
 const t = messages.contact;
 const businessEmail = 'hello@unrealtalent.com';
-const pressEmail = 'press@unrealtalent.com';
+const businessPhoneHref = '+0000000000';
+const whatsappHref = socialProfiles.whatsapp;
 const formId = 'ut-contact-form';
 ---
 
@@ -109,13 +111,23 @@ const formId = 'ut-contact-form';
 
 			<aside class="rounded-xl border border-ut-scampi/20 bg-ut-band-muted p-5" aria-label={messages.a11y.pressAside}>
 				<h3 class="mb-2 text-base font-bold">{t.asideTitle}</h3>
-				<p class="m-0 text-[0.9375rem] leading-relaxed text-ut-muted">
-					{t.asideLead}{' '}
-					<a class="font-semibold text-ut-scampi" href={`mailto:${pressEmail}`}>{pressEmail}</a>
-					{' '}{t.asideMiddle}{' '}
-					<a class="font-semibold text-ut-scampi" href="tel:+0000000000">{t.placeholderPhone}</a>
-					{' '}{t.asideSuffix}
-				</p>
+				<p class="mb-4 text-[0.9375rem] leading-relaxed text-ut-muted">{t.channelsLead}</p>
+				<ul class="m-0 list-none space-y-2 p-0">
+					<li class="text-[0.9375rem] leading-relaxed text-ut-muted">
+						<span class="font-semibold text-ut-text">{t.channelEmail}: </span>
+						<a class="font-semibold text-ut-scampi" href={`mailto:${businessEmail}`}>{businessEmail}</a>
+					</li>
+					<li class="text-[0.9375rem] leading-relaxed text-ut-muted">
+						<span class="font-semibold text-ut-text">{t.channelPhone}: </span>
+						<a class="font-semibold text-ut-scampi" href={`tel:${businessPhoneHref}`}>{t.phoneDisplay}</a>
+					</li>
+					<li class="text-[0.9375rem] leading-relaxed text-ut-muted">
+						<span class="font-semibold text-ut-text">{t.channelWhatsapp}: </span>
+						<a class="font-semibold text-ut-scampi" href={whatsappHref} rel="noopener noreferrer" target="_blank">
+							{t.phoneDisplay}
+						</a>
+					</li>
+				</ul>
 			</aside>
 		</div>
 	</div>

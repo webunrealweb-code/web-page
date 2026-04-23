@@ -35,6 +35,7 @@ export interface Messages {
 		home: string;
 		about: string;
 		services: string;
+		partnersWork: string;
 		contact: string;
 	};
 	lang: {
@@ -100,10 +101,11 @@ export interface Messages {
 		};
 		submit: string;
 		asideTitle: string;
-		asideLead: string;
-		asideMiddle: string;
-		asideSuffix: string;
-		placeholderPhone: string;
+		channelsLead: string;
+		channelEmail: string;
+		channelPhone: string;
+		channelWhatsapp: string;
+		phoneDisplay: string;
 		mailSubject: string;
 		mailLines: { name: string; role: string; email: string; company: string };
 	};

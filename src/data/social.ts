@@ -6,4 +6,5 @@ export const socialProfiles = {
 	facebook: 'https://www.facebook.com/',
 	instagram: 'https://www.instagram.com/',
 	tiktok: 'https://www.tiktok.com/',
+	whatsapp: 'https://wa.me/',
 } as const;

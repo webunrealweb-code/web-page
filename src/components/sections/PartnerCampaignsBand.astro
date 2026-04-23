@@ -1,0 +1,27 @@
+---
+import type { Messages, PartnerVideoRow } from '../../i18n/types';
+import PartnerVideoShowcase from './PartnerVideoShowcase.astro';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+	messages: Messages;
+	partnerVideos: readonly PartnerVideoRow[];
+}
+
+const { messages, partnerVideos } = Astro.props;
+const t = messages.partners;
+---
+
+<div class="w-full scroll-mt-20 bg-ut-cinder text-slate-50" id="partner-campaigns">
+	<div class="mx-auto max-w-[72rem] px-[clamp(1rem,4vw,2rem)] py-[clamp(3rem,8vw,4.5rem)]">
+		<SectionHeading
+			title={t.workTitle}
+			subtitle={t.workSubtitle}
+			accent
+			display
+			scheme="dark"
+			align="left"
+		/>
+		<PartnerVideoShowcase videos={partnerVideos} ariaLabel={messages.a11y.showcaseRegion} />
+	</div>
+</div>
