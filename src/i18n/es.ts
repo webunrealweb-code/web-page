@@ -70,7 +70,8 @@ export const es: Messages = {
 		block2Body:
 			'De la estrategia al reporte final, diseñamos campañas con creadores alineadas a tus objetivos, audiencia y canales.',
 		rosterTitle: 'Talento destacado',
-		rosterLead: 'Un roster curado en lifestyle, entretenimiento, deporte y cultura.',
+		rosterLead: '6 perfiles destacados de una comunidad de más de 50 talentos en lifestyle, entretenimiento, deporte y cultura.',
+		rosterContactCta: 'Para más información sobre todos nuestros talentos, contáctanos.',
 	},
 	partners: {
 		regionLabel: 'Alianzas de marca',

@@ -21,7 +21,7 @@ const t = messages.hero;
 	aria-labelledby="hero-heading"
 >
 	<div
-		class="relative mx-auto max-w-[52rem] px-[clamp(1rem,4vw,2rem)] pb-[clamp(3rem,10vh,5rem)] pt-[clamp(5.5rem,14vh,8rem)] text-center"
+		class="relative mx-auto max-w-[52rem] px-6 sm:px-[clamp(1rem,4vw,2rem)] pb-[clamp(3rem,10vh,5rem)] pt-[clamp(5.5rem,14vh,8rem)] text-center"
 	>
 		<Image
 			src={invertedLogo}
@@ -32,15 +32,17 @@ const t = messages.hero;
 			format="png"
 			loading="eager"
 		/>
-		<p class="mb-4 text-xs font-bold uppercase tracking-[0.08em] text-ut-hero-tonal">{t.eyebrow}</p>
-		<h1
-			id="hero-heading"
-			class="mb-4 font-display text-[clamp(2.35rem,8vw,4.25rem)] font-extrabold uppercase leading-[1.02] tracking-[0.01em] text-balance text-white"
-		>
-			{t.title}
-		</h1>
+		<p class="mb-4 px-2 text-center text-xs font-bold uppercase tracking-[0.08em] text-ut-hero-tonal sm:px-0">{t.eyebrow}</p>
+		<div class="mb-4 flex justify-center px-2 sm:px-0">
+			<h1
+				id="hero-heading"
+				class="w-fit max-w-[20rem] break-words [overflow-wrap:anywhere] text-center font-display text-[clamp(1.65rem,7.6vw,4.25rem)] font-extrabold uppercase leading-[1.02] tracking-[0.005em] text-white [text-wrap:balance] sm:max-w-[32rem] sm:tracking-[0.01em]"
+			>
+				{t.title}
+			</h1>
+		</div>
 		<p
-			class="mx-auto mb-8 max-w-[32rem] text-[clamp(1rem,2.2vw,1.2rem)] leading-relaxed text-slate-100/90"
+			class="mx-auto mb-8 max-w-[32rem] px-2 text-center text-[clamp(1rem,2.2vw,1.2rem)] leading-relaxed text-slate-100/90 sm:px-0"
 		>
 			{t.lead}
 		</p>

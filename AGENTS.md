@@ -16,7 +16,7 @@ This document defines **repository layout**, **coding standards**, and expectati
 | `src/pages/` | **Routes only.** Thin files: import layout + sections, pass **SEO props** into `BaseLayout`. No large markup blobs duplicated across pages. |
 | `src/pages/robots.txt.ts` | **Dynamic `robots.txt`:** allows `Allow` / `Sitemap` line when `PUBLIC_SITE_URL` is set at build time. Do not add a competing `public/robots.txt`. |
 | `src/layouts/` | **Document shells:** `<html>`, shared `<head>` (SEO, OG, Twitter, canonical), skip link, global CSS import, site-wide **accessibility options** panel. |
-| `src/components/` | **Reusable UI:** **`layout/`** (e.g. `SiteHeader`, `SiteFooter`), **`sections/`** (e.g. `Hero`, `StatsGrid`, `AboutBand`), **`Button.astro`**, **`VimeoEmbed.astro`**. One obvious responsibility per file. |
+| `src/components/` | **Reusable UI:** **`layout/`** (e.g. `SiteHeader`, `SiteFooter`), **`sections/`** (e.g. `Hero`, `StatsGrid`, `AboutBand`), **`Button.astro`**, **`Video.astro`** (local/self-hosted video player wrapper). One obvious responsibility per file. |
 | `src/data/` | **Structured homepage / marketing data** (stats, roster arrays) until Content Collections or a CMS replace it. |
 | `src/components/seo/` | **Structured data** and other SEO-only fragments (`SiteJsonLd.astro`, future breadcrumbs, etc.). |
 | `src/styles/` | **Shared CSS** — `global.css` defines **brand tokens** (Cinder `#040407`, Scampi `#6a65b1`, Mulled Wine `#46446e`), focus, skip link, motion. `page.css` is for full-bleed homepage bands. Prefer scoped `<style>` in `.astro` when styles are component-local. |
@@ -75,14 +75,14 @@ Target **WCAG 2.2 Level AA** for new UI. Treat **AAA-style targets** (e.g. large
 - Meaningful images: descriptive **`alt`**. Decorative: **`alt=""`**.
 - Meaningful **SVG controls:** expose name via **`aria-label`** / visible text / `<title>` as appropriate.
 
-### Vimeo video
+### Netlify-hosted video
 
-- Use **`VimeoEmbed.astro`** only (responsive wrapper + consistent query params). Pass the numeric **`videoId`**, a meaningful **`title`** (becomes the iframe title), and optional **`hash`** for unlisted links.
-- Prefer **`loading="lazy"`** below the fold; **`eager`** only for a critical above-the-fold hero. Avoid **`autoplay`** with sound; pair autoplay with **`muted`** when truly needed.
+- Use **`Video.astro`** as the local video wrapper. Pass a public asset path via **`src`** (e.g. `/videos/partner-01.mp4`) and a meaningful **`title`**.
+- Store videos in **`public/videos/`** so Netlify serves them as static assets.
+- Default setup uses **native `<video controls>`** so the browser/player overlay handles play/pause and transport UI.
+- Prefer **`preload="metadata"`** and `loading="lazy"` below the fold. Avoid autoplay with sound; pair autoplay with muted when truly needed.
 - Add a visible **`caption`** and/or on-page copy when the video conveys information users must not miss (complements WCAG for time-based media where applicable).
-- **`chrome="minimal"`** turns off Vimeo’s scrub bar, volume, fullscreen, quality, PiP, speed, transcript, chapters, Chromecast, logo, etc., and centers the **play** control. It is **not** the same as Vimeo’s **`controls=0`**, which removes **all** UI including play/pause (chromeless — needs SDK or autoplay). Granular params are subject to **Vimeo plan** limits per their docs.
-- For strict **play/pause only** with no CC button in the player, set **`chrome="minimal"`** and **`showCaptionsToggle={false}`**, and provide captions or a transcript **on the page**.
-- **`chrome="custom"`** sets Vimeo **`controls=0`**, loads **`@vimeo/player`** in a small client script, and adds a **Play / Pause** toggle (unless **`showBuiltInTransport={false}`**). Use **`showBuiltInTransport={false}`** when you will provide your own buttons and call the Player API against the iframe’s **`id`** (stable per embed instance). **`controls=0`** is also plan-limited on Vimeo’s side.
+- If you need fully custom controls later, create a dedicated wrapper component and keep `Video.astro` as the simple native-controls baseline.
 
 ### Forms (when added)
 

@@ -41,8 +41,8 @@ const t = messages.services;
 					loading="lazy"
 					decoding="async"
 				/>
-				<div>
-					<h3 class="mb-3 font-sans text-[0.9375rem] font-bold uppercase tracking-wide text-ut-scampi">{t.block1Title}</h3>
+				<div class="min-w-0">
+					<h3 class="mb-3 font-sans text-[0.875rem] font-bold uppercase tracking-wide text-ut-scampi sm:text-[0.9375rem]">{t.block1Title}</h3>
 					<p class="m-0 leading-relaxed text-slate-200/85">{t.block1Body}</p>
 				</div>
 			</div>
@@ -55,8 +55,8 @@ const t = messages.services;
 					loading="lazy"
 					decoding="async"
 				/>
-				<div>
-					<h3 class="mb-3 font-sans text-[0.9375rem] font-bold uppercase tracking-wide text-ut-scampi">{t.block2Title}</h3>
+				<div class="min-w-0">
+					<h3 class="mb-3 break-words [overflow-wrap:anywhere] font-sans text-[0.875rem] font-bold uppercase tracking-wide text-ut-scampi sm:text-[0.9375rem]">{t.block2Title}</h3>
 					<p class="m-0 leading-relaxed text-slate-200/85">{t.block2Body}</p>
 				</div>
 			</div>
@@ -67,6 +67,14 @@ const t = messages.services;
 		</h3>
 		<p class="mb-8 max-w-[36rem] text-[0.9375rem] leading-relaxed text-slate-300/85">
 			{t.rosterLead}
+		</p>
+		<p class="mb-8">
+			<a
+				href="#contact"
+				class="font-sans text-sm font-semibold text-ut-scampi underline underline-offset-4 transition hover:text-ut-accent-hover focus-visible:outline-none focus-visible:[box-shadow:0_0_0_2px_#fff,0_0_0_4px_var(--color-ut-scampi)]"
+			>
+				{t.rosterContactCta}
+			</a>
 		</p>
 		<ul class="m-0 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
 			{talents.map((tal) => <TalentCard name={tal.name} tags={tal.tags} />)}

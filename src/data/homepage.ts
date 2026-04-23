@@ -19,7 +19,12 @@ export const talentRoster = [
 export { brandLogos } from './brandLogos';
 
 /**
- * Vimeo numeric IDs for the partner showcase (same order as `messages.partners.showcase`).
- * Replace with your campaign reels.
+ * Vimeo URLs for the partner showcase
+ * (same order as `messages.partners.showcase`).
  */
-export const partnerVideoIds = ['76979871', '76979871', '76979871', '76979871'] as const;
+export const partnerVideoSources = [
+	'https://vimeo.com/1185748257?share=copy&fl=sv&fe=ci',
+	'https://vimeo.com/1185748257?share=copy&fl=sv&fe=ci',
+	'https://vimeo.com/1185748257?share=copy&fl=sv&fe=ci',
+	'https://vimeo.com/1185748257?share=copy&fl=sv&fe=ci',
+] as const;

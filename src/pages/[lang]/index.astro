@@ -8,7 +8,7 @@ import AboutBand from '../../components/sections/AboutBand.astro';
 import ServicesBand from '../../components/sections/ServicesBand.astro';
 import PartnersBand from '../../components/sections/PartnersBand.astro';
 import ContactBand from '../../components/sections/ContactBand.astro';
-import { stats, talentRoster, brandLogos, partnerVideoIds } from '../../data/homepage';
+import { stats, talentRoster, brandLogos, partnerVideoSources } from '../../data/homepage';
 import { getMessages, type Lang } from '../../i18n';
 import { homePath, isLang, langs } from '../../i18n/paths';
 
@@ -30,7 +30,7 @@ const statsRows = stats.map((s, i) => ({
 
 const partnerVideos = messages.partners.showcase.map((row, i) => ({
 	...row,
-	videoId: partnerVideoIds[i] ?? partnerVideoIds[0]!,
+	videoSrc: partnerVideoSources[i] ?? partnerVideoSources[0]!,
 }));
 
 const canonicalPath = homePath(lang);

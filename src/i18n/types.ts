@@ -7,9 +7,9 @@ export interface PartnerShowcaseItem {
 	readonly description: string;
 }
 
-/** Merged showcase row with Vimeo id (built in `[lang]/index.astro`). */
+/** Merged showcase row with video URL/path (built in `[lang]/index.astro`). */
 export interface PartnerVideoRow extends PartnerShowcaseItem {
-	readonly videoId: string;
+	readonly videoSrc: string;
 }
 
 export interface Messages {
@@ -71,6 +71,7 @@ export interface Messages {
 		block2Body: string;
 		rosterTitle: string;
 		rosterLead: string;
+		rosterContactCta: string;
 	};
 	partners: {
 		regionLabel: string;

@@ -1,0 +1,61 @@
+---
+interface Props {
+	/** Vimeo URL (page URL or player URL). */
+	src: string;
+	title: string;
+	aspectRatio?: string;
+	caption?: string;
+	fillParent?: boolean;
+}
+
+const {
+	src,
+	title,
+	aspectRatio = '16 / 9',
+	caption,
+	fillParent = false,
+} = Astro.props;
+
+const frameStyle = fillParent
+	? 'height:100%;width:100%;min-height:0;'
+	: `aspect-ratio: ${aspectRatio};`;
+
+const figureCls = ['m-0 w-full max-w-full', fillParent && 'flex h-full min-h-0 max-w-none flex-1 flex-col'];
+
+const parsed = new URL(src, 'https://vimeo.com');
+const segments = parsed.pathname.split('/').filter(Boolean);
+const idFromPath = segments.find((seg) => /^\d+$/.test(seg));
+const vimeoId = idFromPath ?? src;
+
+const params = new URLSearchParams();
+params.set('dnt', '1');
+params.set('autopause', '0');
+params.set('title', '0');
+params.set('byline', '0');
+params.set('portrait', '0');
+
+if (parsed.searchParams.get('h')) {
+	params.set('h', parsed.searchParams.get('h')!);
+}
+
+const embedSrc = `https://player.vimeo.com/video/${encodeURIComponent(vimeoId)}?${params.toString()}`;
+---
+
+<figure class:list={figureCls}>
+	<div
+		class:list={[
+			'relative w-full overflow-hidden rounded-lg bg-ut-cinder',
+			fillParent && 'min-h-0 flex-1 rounded-none',
+		]}
+		style={frameStyle}
+	>
+		<iframe
+			class="absolute inset-0 h-full w-full border-0 object-cover"
+			src={embedSrc}
+			title={title}
+			allow="autoplay; fullscreen; picture-in-picture"
+			allowfullscreen
+			referrerpolicy="strict-origin-when-cross-origin"></iframe>
+	</div>
+	{caption ? <figcaption class="mt-2 text-sm text-ut-muted">{caption}</figcaption> : null}
+</figure>

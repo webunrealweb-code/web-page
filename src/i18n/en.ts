@@ -69,8 +69,9 @@ export const en: Messages = {
 		block2Title: 'Brand partnerships & marketing',
 		block2Body:
 			'From strategy to reporting, we build creator-led campaigns tailored to your goals, audience, and channels.',
-		rosterTitle: 'Featured talent',
-		rosterLead: 'A curated roster across lifestyle, entertainment, sports, and culture.',
+		rosterTitle: 'Featured creators',
+		rosterLead: '6 featured profiles from our community of 50+ talents across lifestyle, entertainment, sports, and culture.',
+		rosterContactCta: 'For more information about all our talents, contact us.',
 	},
 	partners: {
 		regionLabel: 'Brand partnerships',

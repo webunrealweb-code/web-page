@@ -1,6 +1,6 @@
 # UnrealTalent (Astro)
 
-Marketing homepage for **UnrealTalent** — static Astro site with SEO, accessibility helpers, and optional Vimeo embeds.
+Marketing homepage for **UnrealTalent** — static Astro site with SEO, accessibility helpers, and Netlify-hosted local video embeds.
 
 - **Layout inspiration notes:** `docs/inspiration-wearedw-layout-review.md`
 - **Agent / standards:** `AGENTS.md`
