@@ -18,7 +18,9 @@ const t = messages.services;
 ---
 
 <section class="w-full scroll-mt-20 bg-ut-cinder text-slate-50" id="services" aria-labelledby="services-heading">
-	<div class="mx-auto max-w-[72rem] px-[clamp(1rem,4vw,2rem)] py-[clamp(3rem,8vw,5rem)]">
+	<div
+		class="mx-auto max-w-[72rem] px-[clamp(1rem,4vw,2rem)] pt-[clamp(1.25rem,3vw,2rem)] pb-[clamp(3rem,8vw,5rem)]"
+	>
 		<SectionHeading
 			id="services-heading"
 			title={t.title}
@@ -30,13 +32,33 @@ const t = messages.services;
 		/>
 
 		<div class="mb-12 grid gap-10 md:grid-cols-2">
-			<div>
-				<h3 class="mb-3 font-sans text-[0.9375rem] font-bold uppercase tracking-wide text-ut-scampi">{t.block1Title}</h3>
-				<p class="m-0 leading-relaxed text-slate-200/85">{t.block1Body}</p>
+			<div class="flex items-center gap-4">
+				<img
+					src="/images/services/talent-management.svg"
+					alt=""
+					aria-hidden="true"
+					class="h-full max-h-24 w-auto shrink-0 self-stretch"
+					loading="lazy"
+					decoding="async"
+				/>
+				<div>
+					<h3 class="mb-3 font-sans text-[0.9375rem] font-bold uppercase tracking-wide text-ut-scampi">{t.block1Title}</h3>
+					<p class="m-0 leading-relaxed text-slate-200/85">{t.block1Body}</p>
+				</div>
 			</div>
-			<div>
-				<h3 class="mb-3 font-sans text-[0.9375rem] font-bold uppercase tracking-wide text-ut-scampi">{t.block2Title}</h3>
-				<p class="m-0 leading-relaxed text-slate-200/85">{t.block2Body}</p>
+			<div class="flex items-center gap-4">
+				<img
+					src="/images/services/brand-partnerships.svg"
+					alt=""
+					aria-hidden="true"
+					class="h-full max-h-24 w-auto shrink-0 self-stretch"
+					loading="lazy"
+					decoding="async"
+				/>
+				<div>
+					<h3 class="mb-3 font-sans text-[0.9375rem] font-bold uppercase tracking-wide text-ut-scampi">{t.block2Title}</h3>
+					<p class="m-0 leading-relaxed text-slate-200/85">{t.block2Body}</p>
+				</div>
 			</div>
 		</div>
 

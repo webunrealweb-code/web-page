@@ -23,6 +23,9 @@ export interface Messages {
 		navPrimary: string;
 		navSocial: string;
 		brandLogo: string;
+		menuToggle: string;
+		menuOpen: string;
+		menuClose: string;
 		statsRegion: string;
 		partnersRegion: string;
 		showcaseRegion: string;

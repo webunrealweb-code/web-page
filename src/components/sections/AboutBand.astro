@@ -22,13 +22,33 @@ const t = messages.about;
 			align="left"
 		/>
 		<div class="mb-12 grid gap-8 md:grid-cols-2 md:gap-x-10">
-			<div>
-				<h3 class="mb-2.5 font-sans text-xs font-bold uppercase tracking-wide text-ut-pixel-a">{t.missionTitle}</h3>
-				<p class="m-0 leading-relaxed text-slate-200/90">{t.missionBody}</p>
+			<div class="flex items-center gap-4">
+				<img
+					src="/images/about/mission-rocket.svg"
+					alt=""
+					aria-hidden="true"
+					class="h-full max-h-24 w-auto shrink-0 self-stretch"
+					loading="lazy"
+					decoding="async"
+				/>
+				<div>
+					<h3 class="mb-2.5 font-sans text-xs font-bold uppercase tracking-wide text-ut-pixel-a">{t.missionTitle}</h3>
+					<p class="m-0 leading-relaxed text-slate-200/90">{t.missionBody}</p>
+				</div>
 			</div>
-			<div>
-				<h3 class="mb-2.5 font-sans text-xs font-bold uppercase tracking-wide text-ut-pixel-a">{t.visionTitle}</h3>
-				<p class="m-0 leading-relaxed text-slate-200/90">{t.visionBody}</p>
+			<div class="flex items-center gap-4">
+				<img
+					src="/images/about/vision-eye.svg"
+					alt=""
+					aria-hidden="true"
+					class="h-full max-h-24 w-auto shrink-0 self-stretch"
+					loading="lazy"
+					decoding="async"
+				/>
+				<div>
+					<h3 class="mb-2.5 font-sans text-xs font-bold uppercase tracking-wide text-ut-pixel-a">{t.visionTitle}</h3>
+					<p class="m-0 leading-relaxed text-slate-200/90">{t.visionBody}</p>
+				</div>
 			</div>
 		</div>
 	</div>
