@@ -1,0 +1,53 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import TalentCard from './TalentCard.astro';
+import type { Messages } from '../../i18n/types';
+
+interface Talent {
+	name: string;
+	tags: readonly string[];
+}
+
+interface Props {
+	talents: readonly Talent[];
+	messages: Messages;
+}
+
+const { talents, messages } = Astro.props;
+const t = messages.services;
+---
+
+<section class="w-full scroll-mt-20 bg-ut-cinder text-slate-50" id="services" aria-labelledby="services-heading">
+	<div class="mx-auto max-w-[72rem] px-[clamp(1rem,4vw,2rem)] py-[clamp(3rem,8vw,5rem)]">
+		<SectionHeading
+			id="services-heading"
+			title={t.title}
+			subtitle={t.subtitle}
+			accent
+			display
+			scheme="dark"
+			align="left"
+		/>
+
+		<div class="mb-12 grid gap-10 md:grid-cols-2">
+			<div>
+				<h3 class="mb-3 font-sans text-[0.9375rem] font-bold uppercase tracking-wide text-ut-scampi">{t.block1Title}</h3>
+				<p class="m-0 leading-relaxed text-slate-200/85">{t.block1Body}</p>
+			</div>
+			<div>
+				<h3 class="mb-3 font-sans text-[0.9375rem] font-bold uppercase tracking-wide text-ut-scampi">{t.block2Title}</h3>
+				<p class="m-0 leading-relaxed text-slate-200/85">{t.block2Body}</p>
+			</div>
+		</div>
+
+		<h3 class="mb-2 font-display text-2xl font-extrabold uppercase tracking-wide text-white" id="talent">
+			{t.rosterTitle}
+		</h3>
+		<p class="mb-8 max-w-[36rem] text-[0.9375rem] leading-relaxed text-slate-300/85">
+			{t.rosterLead}
+		</p>
+		<ul class="m-0 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+			{talents.map((tal) => <TalentCard name={tal.name} tags={tal.tags} />)}
+		</ul>
+	</div>
+</section>

@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import invertedLogo from '../../assets/brand/UNREAL Inverted Color.png';
+import type { Lang } from '../../i18n/types';
+import type { Messages } from '../../i18n/types';
+import { homePath } from '../../i18n/paths';
+import SocialLinks from './SocialLinks.astro';
+
+interface Props {
+	lang: Lang;
+	messages: Messages;
+}
+
+const { lang, messages } = Astro.props;
+const year = new Date().getFullYear();
+const t = messages.footer;
+---
+
+<footer class="w-full bg-ut-cinder text-slate-200">
+	<div
+		class="mx-auto flex max-w-[72rem] flex-wrap items-center justify-between gap-6 px-[clamp(1rem,4vw,2rem)] py-8"
+	>
+		<div class="flex min-w-0 flex-1 flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+			<a
+				href={homePath(lang)}
+				class="inline-flex shrink-0 items-center leading-none no-underline transition-opacity hover:opacity-90"
+			>
+				<Image
+					src={invertedLogo}
+					alt={messages.a11y.brandLogo}
+					class="h-12 w-auto max-w-[13.5rem] object-contain sm:h-14 sm:max-w-[16rem]"
+					widths={[260, 380, 520, 720]}
+					sizes="(max-width: 640px) 216px, (max-width: 1024px) 256px, 320px"
+					format="png"
+					loading="lazy"
+				/>
+			</a>
+			<p class="m-0 text-sm text-slate-400">
+				{t.copyright}
+				{' '}
+				{year}
+			</p>
+		</div>
+		<div class="flex flex-wrap items-center gap-4 sm:gap-6">
+			<SocialLinks variant="footer" ariaLabel={messages.a11y.navSocial} />
+			<ul class="m-0 flex list-none gap-6 p-0">
+				<li>
+					<a class="text-sm font-medium text-slate-200 no-underline hover:underline" href="#">{t.privacy}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</footer>

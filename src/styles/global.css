@@ -1,0 +1,105 @@
+@import 'tailwindcss';
+
+/* Explicit scan: @tailwindcss/vite follows the module graph; Astro SFCs are not always
+   reachable from the CSS entry alone, which can drop utilities in dev or odd builds. */
+@source "../**/*.{astro,html,js,ts,mjs}";
+
+@theme {
+	--color-ut-cinder: #040407;
+	--color-ut-scampi: #6a65b1;
+	--color-ut-mulled: #46446e;
+	--color-ut-text: #040407;
+	--color-ut-muted: #5a5878;
+	--color-ut-bg: #fafaf9;
+	--color-ut-accent-hover: #585298;
+	--color-ut-accent-soft: rgba(106, 101, 177, 0.18);
+	--color-ut-hero-tonal: #b4b1d4;
+	--color-ut-band-muted: #f0eff5;
+	--color-ut-mist: #e4e1ec;
+	--color-ut-pixel-a: #c9c5f0;
+	--color-ut-pixel-b: #ffffff;
+
+	--font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
+	--font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+
+	--shadow-focus: 0 0 0 2px var(--color-ut-bg), 0 0 0 4px var(--color-ut-scampi);
+}
+
+@layer base {
+	html {
+		@apply font-sans text-ut-text bg-ut-bg antialiased;
+		font-feature-settings: 'kern' 1;
+		/* Fixed header: keep in-page anchors from sitting under the bar */
+		scroll-padding-top: 4.75rem;
+	}
+
+	body {
+		@apply m-0 min-h-screen tracking-normal;
+	}
+
+	/* Avoid `*:focus-visible` — it can target large landmarks (e.g. skip-link target) and look “broken”. */
+	:where(
+		a,
+		button,
+		input,
+		textarea,
+		select,
+		summary,
+		[role='button'],
+		[href],
+		[tabindex]:not([tabindex='-1'])
+	):focus-visible {
+		outline: none;
+		box-shadow: var(--shadow-focus);
+	}
+
+	:where(
+		a,
+		button,
+		input,
+		textarea,
+		select,
+		summary,
+		[role='button'],
+		[href],
+		[tabindex]:not([tabindex='-1'])
+	):focus:not(:focus-visible) {
+		outline: none;
+		box-shadow: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+			scroll-behavior: auto !important;
+		}
+	}
+}
+
+/* Partner logo carousel — keyframes + motion override (global * PRM rule shortens animations). */
+@keyframes ut-logo-marquee {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+.ut-logo-marquee-track {
+	animation: ut-logo-marquee 70s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ut-logo-marquee-track {
+		animation: none !important;
+	}
+}

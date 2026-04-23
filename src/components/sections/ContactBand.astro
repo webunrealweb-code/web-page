@@ -1,0 +1,151 @@
+---
+import { Image } from 'astro:assets';
+import mainLogo from '../../assets/brand/UNREAL Main Logo.png';
+import type { Messages } from '../../i18n/types';
+
+interface Props {
+	messages: Messages;
+}
+
+const { messages } = Astro.props;
+const t = messages.contact;
+const businessEmail = 'hello@unrealtalent.com';
+const pressEmail = 'press@unrealtalent.com';
+const formId = 'ut-contact-form';
+---
+
+<section class="w-full scroll-mt-20 bg-white text-ut-text" id="contact" aria-labelledby="contact-heading">
+	<div class="mx-auto max-w-[72rem] px-[clamp(1rem,4vw,2rem)] py-[clamp(2.5rem,6vw,4rem)]">
+		<h2
+			id="contact-heading"
+			class="mb-3 font-display text-[clamp(2rem,5vw,3rem)] font-extrabold uppercase leading-tight tracking-wide text-ut-scampi"
+		>
+			{t.title}
+		</h2>
+		<p class="mb-8 max-w-[42rem] leading-relaxed text-ut-muted">{t.intro}</p>
+
+		<div class="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_minmax(0,0.85fr)]">
+			<div
+				class="relative flex min-h-56 items-center justify-center overflow-hidden rounded-lg border border-ut-scampi/20 bg-gradient-to-br from-ut-band-muted to-ut-mist px-6 py-8"
+			>
+				<div class="relative z-[1] w-full">
+					<Image
+						src={mainLogo}
+						alt={messages.a11y.brandLogo}
+						class="mx-auto h-auto w-full max-w-[16rem] object-contain sm:max-w-[18rem]"
+						widths={[220, 380, 600]}
+						sizes="(max-width: 1024px) 70vw, 288px"
+						format="png"
+						loading="lazy"
+					/>
+				</div>
+			</div>
+
+			<div>
+				<h3 class="mb-2 text-lg font-bold">{t.formTitle}</h3>
+				<p id="contact-form-note" class="mb-5 text-sm leading-normal text-slate-500">
+					{t.formNote}
+				</p>
+				<form class="m-0" id={formId} aria-describedby="contact-form-note">
+					<div class="mb-4">
+						<label class="mb-1.5 block text-sm font-semibold" for="contact-name">{t.fields.name}</label>
+						<input
+							class="w-full rounded-md border border-ut-scampi/35 bg-white px-3 py-2.5 font-sans text-ut-text"
+							id="contact-name"
+							name="name"
+							type="text"
+							autocomplete="name"
+							required
+						/>
+					</div>
+					<div class="mb-4">
+						<label class="mb-1.5 block text-sm font-semibold" for="contact-role">{t.fields.role}</label>
+						<input
+							class="w-full rounded-md border border-ut-scampi/35 bg-white px-3 py-2.5 font-sans"
+							id="contact-role"
+							name="role"
+							type="text"
+							autocomplete="organization-title"
+						/>
+					</div>
+					<div class="mb-4">
+						<label class="mb-1.5 block text-sm font-semibold" for="contact-email">{t.fields.email}</label>
+						<input
+							class="w-full rounded-md border border-ut-scampi/35 bg-white px-3 py-2.5 font-sans"
+							id="contact-email"
+							name="email"
+							type="email"
+							autocomplete="email"
+							required
+						/>
+					</div>
+					<div class="mb-4">
+						<label class="mb-1.5 block text-sm font-semibold" for="contact-company">{t.fields.company}</label>
+						<input
+							class="w-full rounded-md border border-ut-scampi/35 bg-white px-3 py-2.5 font-sans"
+							id="contact-company"
+							name="company"
+							type="text"
+							autocomplete="organization"
+						/>
+					</div>
+					<div class="mb-4">
+						<label class="mb-1.5 block text-sm font-semibold" for="contact-message">{t.fields.message}</label>
+						<textarea
+							class="min-h-32 w-full resize-y rounded-md border border-ut-scampi/35 bg-white px-3 py-2.5 font-sans"
+							id="contact-message"
+							name="message"
+							rows={5}
+							required></textarea>
+					</div>
+					<button
+						class="mt-3 w-full min-h-12 cursor-pointer rounded border-0 bg-ut-scampi px-5 py-2.5 font-sans text-xs font-extrabold uppercase tracking-wide text-[#fafaf9] hover:bg-ut-accent-hover focus-visible:outline-none"
+						type="submit"
+					>
+						{t.submit}
+					</button>
+				</form>
+			</div>
+
+			<aside class="rounded-xl border border-ut-scampi/20 bg-ut-band-muted p-5" aria-label={messages.a11y.pressAside}>
+				<h3 class="mb-2 text-base font-bold">{t.asideTitle}</h3>
+				<p class="m-0 text-[0.9375rem] leading-relaxed text-ut-muted">
+					{t.asideLead}{' '}
+					<a class="font-semibold text-ut-scampi" href={`mailto:${pressEmail}`}>{pressEmail}</a>
+					{' '}{t.asideMiddle}{' '}
+					<a class="font-semibold text-ut-scampi" href="tel:+0000000000">{t.placeholderPhone}</a>
+					{' '}{t.asideSuffix}
+				</p>
+			</aside>
+		</div>
+	</div>
+</section>
+
+<script
+	define:vars={{
+		businessEmail,
+		formId,
+		mailSubjectTpl: t.mailSubject,
+		LN: t.mailLines.name,
+		LR: t.mailLines.role,
+		LE: t.mailLines.email,
+		LC: t.mailLines.company,
+	}}
+>
+	document.getElementById(formId)?.addEventListener('submit', (e) => {
+		e.preventDefault();
+		const form = e.currentTarget;
+		if (!(form instanceof HTMLFormElement)) return;
+		const data = new FormData(form);
+		const name = String(data.get('name') || '').trim();
+		const role = String(data.get('role') || '').trim();
+		const email = String(data.get('email') || '').trim();
+		const company = String(data.get('company') || '').trim();
+		const message = String(data.get('message') || '').trim();
+		const subject = encodeURIComponent(mailSubjectTpl.replace('{name}', name || '—'));
+		const body = encodeURIComponent(
+			[`${LN}: ${name}`, `${LR}: ${role}`, `${LE}: ${email}`, `${LC}: ${company}`, '', message].join('\n'),
+		);
+		window.location.href = `mailto:${businessEmail}?subject=${subject}&body=${body}`;
+	});
+</script>

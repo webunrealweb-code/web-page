@@ -1,0 +1,71 @@
+---
+interface Props {
+	variant?: 'primary' | 'secondary' | 'ghost' | 'heroGhost';
+	type?: 'button' | 'submit' | 'reset';
+	href?: string;
+	class?: string;
+	disabled?: boolean;
+	busy?: boolean;
+	id?: string;
+	'aria-label'?: string;
+	rel?: string;
+	target?: string;
+}
+
+const {
+	variant = 'primary',
+	type = 'button',
+	href,
+	class: className,
+	disabled = false,
+	busy = false,
+	'aria-label': ariaLabel,
+	id,
+	rel,
+	target,
+} = Astro.props;
+
+const base =
+	'inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-md border-2 px-[1.125rem] py-2 text-center font-semibold leading-tight no-underline transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-55';
+
+const variants = {
+	primary:
+		'border-transparent bg-ut-scampi text-[#fafaf9] hover:bg-ut-accent-hover focus-visible:bg-ut-accent-hover',
+	secondary:
+		'border-ut-mulled bg-[#fafaf9] text-ut-cinder hover:bg-[#ebe9f2] focus-visible:bg-[#ebe9f2]',
+	ghost:
+		'border-transparent bg-transparent text-ut-scampi hover:bg-ut-accent-soft focus-visible:bg-ut-accent-soft',
+	heroGhost:
+		'rounded-full border border-white/35 bg-transparent text-slate-50 hover:bg-white/12 focus-visible:bg-white/12',
+} as const;
+
+const cls = [base, variants[variant], className].filter(Boolean).join(' ');
+const isLink = Boolean(href) && !disabled;
+---
+
+{
+	isLink ? (
+		<a
+			class={cls}
+			href={href}
+			id={id}
+			rel={rel}
+			target={target}
+			aria-busy={busy ? true : undefined}
+			aria-label={ariaLabel}
+		>
+			<slot />
+		</a>
+	) : (
+		<button
+			class={cls}
+			type={type}
+			disabled={disabled || busy}
+			id={id}
+			aria-busy={busy ? true : undefined}
+			aria-label={ariaLabel}
+		>
+			<slot />
+		</button>
+	)
+}

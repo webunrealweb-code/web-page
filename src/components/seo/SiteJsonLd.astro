@@ -1,0 +1,38 @@
+---
+interface Props {
+	inLanguage?: string;
+}
+
+const { inLanguage = 'en' } = Astro.props;
+
+const site = Astro.site;
+if (!site) {
+	return null;
+}
+
+const origin = site.origin;
+
+const graph = [
+	{
+		'@type': 'Organization',
+		'@id': `${origin}/#organization`,
+		name: 'UnrealTalent',
+		url: origin,
+	},
+	{
+		'@type': 'WebSite',
+		'@id': `${origin}/#website`,
+		name: 'UnrealTalent',
+		url: origin,
+		inLanguage: [inLanguage],
+		publisher: { '@id': `${origin}/#organization` },
+	},
+];
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@graph': graph,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

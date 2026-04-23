@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 56" role="img" aria-label="Monolith">
+	<title>Monolith</title>
+	<rect width="180" height="56" rx="8" fill="#1a1830"/>
+	<rect x="24" y="14" width="18" height="28" rx="2" fill="#6a65b1"/>
+	<rect x="48" y="18" width="18" height="24" rx="2" fill="#c9c5f0" opacity="0.85"/>
+	<rect x="78" y="22" width="78" height="6" rx="3" fill="#e4e1ec"/>
+	<rect x="78" y="32" width="52" height="4" rx="2" fill="#46446e"/>
+</svg>

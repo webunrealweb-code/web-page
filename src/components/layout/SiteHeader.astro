@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/brand/UNREAL Logo Symbol.png';
+import type { Lang } from '../../i18n/types';
+import type { Messages } from '../../i18n/types';
+import { href, homePath, otherLang } from '../../i18n/paths';
+import SocialLinks from './SocialLinks.astro';
+
+interface Props {
+	lang: Lang;
+	messages: Messages;
+}
+
+const { lang, messages } = Astro.props;
+const t = messages.nav;
+const a = messages.a11y;
+const alt = otherLang(lang);
+const links = [
+	{ href: href(lang, '#about'), label: t.about },
+	{ href: href(lang, '#services'), label: t.services },
+	{ href: href(lang, '#contact'), label: t.contact },
+] as const;
+---
+
+<header
+	class="fixed inset-x-0 top-0 z-[100] border-b border-white/10 bg-[rgba(4,4,7,0.72)] font-sans backdrop-blur-md"
+>
+	<div
+		class="mx-auto flex min-h-[3.75rem] max-w-[72rem] items-center justify-between gap-4 px-[clamp(1rem,4vw,2rem)] max-sm:flex-col max-sm:items-start max-sm:py-2.5"
+	>
+		<a
+			href={homePath(lang)}
+			class="inline-flex shrink-0 items-center leading-none text-white no-underline transition-opacity hover:opacity-90"
+		>
+			<Image
+				src={logo}
+				alt={a.brandLogo}
+				class="h-10 w-auto max-w-[13.5rem] object-contain sm:h-11 sm:max-w-[16rem] md:h-12 md:max-w-[19rem]"
+				widths={[220, 320, 460, 620]}
+				sizes="(max-width: 640px) 180px, (max-width: 1024px) 240px, 300px"
+				format="png"
+				loading="eager"
+			/>
+		</a>
+		<div class="flex flex-wrap items-center justify-end gap-3 max-sm:w-full max-sm:justify-between md:gap-5">
+			<nav aria-label={a.navPrimary}>
+				<ul class="m-0 flex list-none flex-wrap justify-end gap-x-5 gap-y-1 p-0">
+					{
+						links.map(({ href: h, label }) => (
+							<li>
+								<a
+									class="border-b-2 border-transparent pb-1 text-[0.8125rem] font-semibold uppercase tracking-wide text-slate-100/80 no-underline hover:border-ut-scampi hover:text-white focus-visible:border-ut-scampi"
+									href={h}
+								>
+									{label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+			<div class="flex flex-wrap items-center gap-3 border-l border-white/15 pl-3 max-sm:border-0 max-sm:pl-0">
+				<a
+					class="text-[0.75rem] font-semibold uppercase tracking-wide text-slate-300 no-underline hover:text-white"
+					href={homePath(alt)}
+					hreflang={alt}
+					lang={alt}
+				>
+					{lang === 'en' ? messages.lang.switchToEs : messages.lang.switchToEn}
+				</a>
+				<SocialLinks variant="header" ariaLabel={a.navSocial} />
+			</div>
+		</div>
+	</div>
+</header>

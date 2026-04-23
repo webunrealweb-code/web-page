@@ -1,0 +1,172 @@
+---
+/**
+ * Responsive Vimeo player embed.
+ * @see https://help.vimeo.com/hc/en-us/articles/12426260232977-About-Player-Parameters
+ * @see https://github.com/vimeo/player.js
+ */
+
+interface Props {
+	videoId: string;
+	title: string;
+	hash?: string;
+	aspectRatio?: string;
+	loading?: 'lazy' | 'eager';
+	chrome?: 'default' | 'minimal' | 'custom';
+	showCaptionsToggle?: boolean;
+	showBuiltInTransport?: boolean;
+	showBranding?: boolean;
+	dnt?: boolean;
+	autoplay?: boolean;
+	muted?: boolean;
+	caption?: string;
+	fillParent?: boolean;
+}
+
+const {
+	videoId,
+	title,
+	hash,
+	aspectRatio = '16 / 9',
+	loading = 'lazy',
+	chrome = 'default',
+	showCaptionsToggle = true,
+	showBuiltInTransport = true,
+	showBranding = false,
+	dnt = true,
+	autoplay = false,
+	muted = false,
+	caption,
+	fillParent = false,
+} = Astro.props;
+
+const frameStyle = fillParent
+	? 'height:100%;width:100%;min-height:0;'
+	: `aspect-ratio: ${aspectRatio};`;
+
+const iframeId = chrome === 'custom' ? `ut-vimeo-${crypto.randomUUID()}` : undefined;
+
+const params = new URLSearchParams();
+if (hash) params.set('h', hash);
+if (dnt) params.set('dnt', '1');
+params.set('autopause', '0');
+if (!showBranding) {
+	params.set('title', '0');
+	params.set('byline', '0');
+	params.set('portrait', '0');
+}
+if (autoplay) params.set('autoplay', '1');
+if (muted || autoplay) params.set('muted', '1');
+
+if (chrome === 'custom') {
+	params.set('controls', '0');
+} else if (chrome === 'minimal') {
+	params.set('progress_bar', '0');
+	params.set('volume', '0');
+	params.set('fullscreen', '0');
+	params.set('quality_selector', '0');
+	params.set('pip', '0');
+	params.set('speed', '0');
+	params.set('transcript', '0');
+	params.set('chapters', '0');
+	params.set('chromecast', '0');
+	params.set('vimeo_logo', '0');
+	params.set('audio_track', '0');
+	params.set('badge', '0');
+	params.set('airplay', '0');
+	params.set('play_button_position', 'center');
+	params.set('cc', showCaptionsToggle ? '1' : '0');
+}
+
+const query = params.toString();
+const src = `https://player.vimeo.com/video/${encodeURIComponent(videoId)}${query ? `?${query}` : ''}`;
+
+const iframeLoading = chrome === 'custom' ? 'eager' : loading;
+
+const figureCls = [
+	'm-0 w-full max-w-full',
+	fillParent && 'flex h-full min-h-0 max-w-none flex-1 flex-col',
+	chrome === 'custom' && 'relative',
+];
+---
+
+<figure class:list={figureCls}>
+	<div
+		class:list={[
+			'relative w-full overflow-hidden rounded-lg bg-ut-cinder',
+			fillParent && 'min-h-0 flex-1 rounded-none',
+		]}
+		style={frameStyle}
+		data-ut-vimeo-frame
+	>
+		<iframe
+			class="absolute inset-0 h-full w-full border-0"
+			id={iframeId}
+			src={src}
+			title={title}
+			loading={iframeLoading}
+			allow="autoplay; fullscreen; picture-in-picture"
+			allowfullscreen
+			referrerpolicy="strict-origin-when-cross-origin"></iframe>
+		{
+			chrome === 'custom' && showBuiltInTransport && (
+				<div class="pointer-events-none absolute inset-0 z-[2] flex items-stretch justify-stretch p-0">
+					<button
+						type="button"
+						class="group/toggle pointer-events-auto m-0 flex h-full w-full cursor-pointer items-center justify-center border-0 bg-gradient-to-t from-transparent from-40% to-[rgba(4,4,7,0.45)] p-4 font-sans transition-colors hover:to-[rgba(4,4,7,0.55)] focus-visible:outline-none focus-visible:[box-shadow:inset_0_0_0_2px_#fff,inset_0_0_0_4px_var(--color-ut-scampi)]"
+						data-vimeo-toggle
+						aria-label="Play video"
+					>
+						<span class="pointer-events-none inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border-2 border-white bg-ut-scampi px-5 py-2 font-semibold leading-tight text-white transition-colors group-hover/toggle:bg-ut-accent-hover">
+							Play
+						</span>
+					</button>
+				</div>
+			)
+		}
+	</div>
+	{caption ? <figcaption class="mt-2 text-sm text-ut-muted">{caption}</figcaption> : null}
+</figure>
+
+{
+	chrome === 'custom' && showBuiltInTransport && iframeId && (
+		<script type="module" define:vars={{ iframeId }}>
+			import Player from '@vimeo/player';
+
+			const iframe = document.getElementById(iframeId);
+			const frame = iframe?.closest('[data-ut-vimeo-frame]');
+			const btn = frame?.querySelector('[data-vimeo-toggle]');
+			if (!iframe || !btn || !(iframe instanceof HTMLIFrameElement)) {
+				console.warn('[VimeoEmbed] Chromeless transport: missing iframe or button.');
+			} else {
+				const label = btn.querySelector('span');
+				const player = new Player(iframe);
+				const sync = async () => {
+					try {
+						const paused = await player.getPaused();
+						const text = paused ? 'Play' : 'Pause';
+						if (label) label.textContent = text;
+						btn.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
+					} catch {
+						if (label) label.textContent = 'Play';
+						btn.setAttribute('aria-label', 'Play video');
+					}
+				};
+				btn.addEventListener('click', async () => {
+					try {
+						const paused = await player.getPaused();
+						if (paused) await player.play();
+						else await player.pause();
+					} catch (e) {
+						console.warn('[VimeoEmbed] Playback failed', e);
+					}
+				});
+				player.on('play', sync);
+				player.on('pause', sync);
+				player
+					.ready()
+					.then(sync)
+					.catch(() => {});
+			}
+		</script>
+	)
+}

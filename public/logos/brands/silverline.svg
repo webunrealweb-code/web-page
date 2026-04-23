@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 56" role="img" aria-label="Silverline">
+	<title>Silverline</title>
+	<rect width="180" height="56" rx="8" fill="#e4e1ec"/>
+	<path fill="#040407" d="M22 36V20h6l8 10 8-10h6v16h-6V26l-7 8.5h-2L28 26v10h-6Z"/>
+	<rect x="62" y="22" width="96" height="6" rx="3" fill="#46446e"/>
+	<rect x="62" y="32" width="64" height="4" rx="2" fill="#6a65b1"/>
+</svg>

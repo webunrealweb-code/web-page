@@ -1,0 +1,88 @@
+---
+import type { BrandLogo } from '../../data/brandLogos';
+
+interface Props {
+	logos: readonly BrandLogo[];
+	ariaLabel: string;
+}
+
+const { logos, ariaLabel } = Astro.props;
+
+const item =
+	'inline-flex h-14 min-w-[8.5rem] max-w-[12rem] items-center justify-center px-3 sm:min-w-[9.5rem]';
+const img = 'block h-9 w-auto max-w-full object-contain opacity-95 sm:h-10';
+const li = 'm-0 flex shrink-0 list-none p-0';
+const row = 'm-0 flex w-max list-none items-center gap-x-10 gap-y-4 px-6 py-1 sm:gap-x-14 md:px-10';
+---
+
+<div
+	class="relative overflow-x-auto overflow-y-hidden [-ms-overflow-style:none] [scrollbar-width:none] motion-reduce:overflow-x-visible [&::-webkit-scrollbar]:hidden"
+	role="region"
+	aria-label={ariaLabel}
+>
+	<div
+		class="ut-logo-marquee-track flex w-max gap-0 hover:[animation-play-state:paused] motion-reduce:hidden"
+	>
+		<ul class={row}>
+			{
+				logos.map((logo) => (
+					<li class={li}>
+						<span class={item}>
+							<img
+								class={img}
+								src={logo.src}
+								alt={logo.alt}
+								width="200"
+								height="48"
+								loading="lazy"
+								decoding="async"
+								draggable="false"
+							/>
+						</span>
+					</li>
+				))
+			}
+		</ul>
+		<ul class={row} aria-hidden="true">
+			{
+				logos.map((logo) => (
+					<li class={li}>
+						<span class={item}>
+							<img
+								class={img}
+								src={logo.src}
+								alt=""
+								width="200"
+								height="48"
+								loading="lazy"
+								decoding="async"
+								draggable="false"
+							/>
+						</span>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+
+	<ul class="m-0 hidden list-none flex-wrap items-center justify-center gap-x-8 gap-y-6 px-2 py-2 motion-reduce:flex">
+		{
+			logos.map((logo) => (
+				<li class="m-0 flex list-none p-0">
+					<span class={item}>
+						<img
+							class={img}
+							src={logo.src}
+							alt={logo.alt}
+							width="200"
+							height="48"
+							loading="lazy"
+							decoding="async"
+							draggable="false"
+						/>
+					</span>
+				</li>
+			))
+		}
+	</ul>
+</div>

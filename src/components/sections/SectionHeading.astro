@@ -1,0 +1,40 @@
+---
+interface Props {
+	id?: string;
+	title: string;
+	subtitle?: string;
+	accent?: boolean;
+	display?: boolean;
+	scheme?: 'light' | 'dark';
+	align?: 'left' | 'center';
+}
+
+const { id, title, subtitle, accent = false, display = false, scheme = 'light', align = 'left' } = Astro.props;
+
+const titleColor =
+	scheme === 'dark' && display
+		? 'text-ut-scampi'
+		: scheme === 'dark'
+			? 'text-white'
+			: 'text-ut-text';
+
+const titleTypo = display
+	? 'font-display text-[clamp(2rem,5vw,3rem)] font-extrabold uppercase tracking-wide'
+	: 'font-sans text-[clamp(1.75rem,4vw,2.35rem)] font-bold tracking-tight';
+
+const accentBar =
+	accent &&
+	'relative pb-3.5 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-14 after:rounded-sm after:bg-ut-scampi';
+const accentCenter = accent && align === 'center' && 'after:left-1/2 after:-translate-x-1/2';
+const alignTitle = align === 'center' ? 'text-center' : display && scheme !== 'dark' ? 'text-left' : '';
+const subBase = 'mt-3 max-w-[44rem] font-sans text-[1.0625rem] leading-relaxed tracking-normal';
+const subColor = scheme === 'dark' ? 'text-slate-200/90' : 'text-ut-muted';
+const subCenter = align === 'center' ? 'mx-auto text-center' : '';
+---
+
+<div class="mb-[clamp(1.5rem,4vw,2.5rem)]">
+	<h2 class:list={['m-0 leading-tight', titleTypo, titleColor, accentBar, accentCenter, alignTitle]} id={id}>
+		{title}
+	</h2>
+	{subtitle && <p class:list={[subBase, subColor, subCenter]}>{subtitle}</p>}
+</div>

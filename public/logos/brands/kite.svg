@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 56" role="img" aria-label="Kite">
+	<title>Kite</title>
+	<rect width="180" height="56" rx="8" fill="#fafaf9"/>
+	<path fill="#6a65b1" d="m34 38 12-22 12 22H34Zm12-14-6 11h12l-6-11Z"/>
+	<rect x="72" y="22" width="88" height="6" rx="3" fill="#040407"/>
+	<rect x="72" y="32" width="48" height="4" rx="2" fill="#46446e"/>
+</svg>

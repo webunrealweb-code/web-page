@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Set PUBLIC_SITE_URL in the Netlify UI (Site settings → Environment variables)
+  # to your canonical origin, e.g. https://www.unrealtalent.com — required for sitemap + canonical SEO.

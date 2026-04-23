@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 56" role="img" aria-label="Aurora">
+	<title>Aurora</title>
+	<rect width="180" height="56" rx="8" fill="#040407"/>
+	<path fill="#6a65b1" d="M28 38 46 18h8l18 20h-10l-4-5h-16l-4 5H28Zm14-12h8l-4-4.5-4 4.5Z"/>
+	<rect x="88" y="22" width="64" height="6" rx="3" fill="#e4e1ec" opacity="0.9"/>
+	<rect x="88" y="32" width="44" height="4" rx="2" fill="#46446e"/>
+</svg>
