@@ -4,7 +4,7 @@ import celesteImage from '../assets/talents/Celeste01.jpg';
 import eduardoImage from '../assets/talents/eduardo.jpeg';
 import kevinImage from '../assets/talents/KevinJimenez01.jpeg';
 import churryImage from '../assets/talents/churry.jpeg';
-import rodezelImage from '../assets/talents/Rodezel01.png';
+import rodezelImage from '../assets/talents/Rodezel01.PNG';
 import distoImage from '../assets/talents/Disto01.jpg';
 
 export const talentRoster = [
