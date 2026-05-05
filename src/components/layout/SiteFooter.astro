@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import invertedLogo from '../../assets/brand/UNREAL Inverted Color.png';
+import mainLogo from '../../assets/brand/Logotipo Blanco.png';
 import type { Lang } from '../../i18n/types';
 import type { Messages } from '../../i18n/types';
 import { homePath } from '../../i18n/paths';
@@ -26,7 +26,7 @@ const t = messages.footer;
 				class="inline-flex shrink-0 items-center leading-none no-underline transition-opacity hover:opacity-90"
 			>
 				<Image
-					src={invertedLogo}
+					src={mainLogo}
 					alt={messages.a11y.brandLogo}
 					class="h-12 w-auto max-w-[13.5rem] object-contain sm:h-14 sm:max-w-[16rem]"
 					widths={[260, 380, 520, 720]}
@@ -43,11 +43,6 @@ const t = messages.footer;
 		</div>
 		<div class="flex flex-wrap items-center gap-4 sm:gap-6">
 			<SocialLinks variant="footer" ariaLabel={messages.a11y.navSocial} />
-			<ul class="m-0 flex list-none gap-6 p-0">
-				<li>
-					<a class="text-sm font-medium text-slate-200 no-underline hover:underline" href="#">{t.privacy}</a>
-				</li>
-			</ul>
 		</div>
 	</div>
 </footer>

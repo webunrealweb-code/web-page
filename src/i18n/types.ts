@@ -1,15 +1,17 @@
 export type Lang = 'en' | 'es';
+export type ServiceIconKey =
+	| 'talent-management'
+	| 'brand-partnerships'
+	| 'production'
+	| 'creative-development'
+	| 'events-experiences'
+	| 'strategic-consulting';
 
 export interface PartnerShowcaseItem {
 	readonly partner: string;
 	readonly headline: string;
 	readonly title: string;
 	readonly description: string;
-}
-
-/** Merged showcase row with video URL/path (built in `[lang]/index.astro`). */
-export interface PartnerVideoRow extends PartnerShowcaseItem {
-	readonly videoSrc: string;
 }
 
 export interface Messages {
@@ -47,7 +49,7 @@ export interface Messages {
 		privacy: string;
 		copyright: string;
 	};
-	statsLabels: readonly string[];
+	statsLabels: {stat: string; label: string}[];
 	hero: {
 		eyebrow: string;
 		title: string;
@@ -66,13 +68,14 @@ export interface Messages {
 	services: {
 		title: string;
 		subtitle: string;
-		block1Title: string;
-		block1Body: string;
-		block2Title: string;
-		block2Body: string;
 		rosterTitle: string;
 		rosterLead: string;
 		rosterContactCta: string;
+		services: {
+			title: string;
+			body: string;
+			icon: ServiceIconKey;
+		}[];
 	};
 	partners: {
 		regionLabel: string;

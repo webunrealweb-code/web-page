@@ -1,14 +1,13 @@
 ---
-import type { Messages, PartnerVideoRow } from '../../i18n/types';
+import type { Messages } from '../../i18n/types';
 import PartnerVideoShowcase from './PartnerVideoShowcase.astro';
 import SectionHeading from './SectionHeading.astro';
 
 interface Props {
 	messages: Messages;
-	partnerVideos: readonly PartnerVideoRow[];
 }
 
-const { messages, partnerVideos } = Astro.props;
+const { messages } = Astro.props;
 const t = messages.partners;
 ---
 
@@ -22,6 +21,6 @@ const t = messages.partners;
 			scheme="dark"
 			align="left"
 		/>
-		<PartnerVideoShowcase videos={partnerVideos} ariaLabel={messages.a11y.showcaseRegion} />
+		<PartnerVideoShowcase  ariaLabel={messages.a11y.showcaseRegion} />
 	</div>
 </div>

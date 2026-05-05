@@ -1,4 +1,4 @@
-# UnrealTalent (Astro)
+# Unreal Connections(Astro)
 
 Marketing homepage for **UnrealTalent** — static Astro site with SEO, accessibility helpers, and Netlify-hosted local video embeds.
 

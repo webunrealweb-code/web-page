@@ -1,7 +1,7 @@
 # Layout & structure review — DW Entertainment (`wearedw.com`)
 
 **Source (reviewed):** [https://wearedw.com/en](https://wearedw.com/en)  
-**Purpose of this document:** Capture **information architecture**, **section flow**, and **repeatable layout patterns** to use as **structural inspiration** for the UnrealTalent site—not to copy assets, copy, or proprietary design files.
+**Purpose of this document:** Capture **information architecture**, **section flow**, and **repeatable layout patterns** to use as **structural inspiration** for the Unreal Connectionssite—not to copy assets, copy, or proprietary design files.
 
 **Method note:** Findings are derived from the page’s public content outline (headings, blocks, and navigation). A live DOM/CSS inspection in the browser would still be useful later for spacing, motion, breakpoints, and exact component boundaries.
 
@@ -57,7 +57,7 @@ This is the **scroll narrative** as reflected in the page content.
 
 - The same **section title** (e.g. “Who we are”, “Our services”, “Careers”, “Contact”) appears **multiple times** in the content flow. On the live site this is often implemented as **oversized type**, **sticky text**, or **parallax layers**, not duplicate copy for screen readers.
 
-**For UnrealTalent / a11y:** Use **one real `h2` per section** in the DOM; replicate **visual** repetition with CSS/backgrounds only, or use `aria-hidden` decorative duplicates only if they are truly decorative and do not confuse assistive tech (prefer avoiding duplicate headings in the accessibility tree).
+**For Unreal Connections/ a11y:** Use **one real `h2` per section** in the DOM; replicate **visual** repetition with CSS/backgrounds only, or use `aria-hidden` decorative duplicates only if they are truly decorative and do not confuse assistive tech (prefer avoiding duplicate headings in the accessibility tree).
 
 ### 4.2 Hero + immediate proof
 
@@ -122,7 +122,7 @@ This is the **scroll narrative** as reflected in the page content.
 ## 6. UX & visual tendencies (inferred)
 
 - **Long single page** with strong **vertical rhythm**: big type, full-width bands, alternating **dark/light** or **image/full-bleed** sections (typical for this category—confirm in browser).
-- **High density of talent cards** → needs **pagination**, **lazy media**, or **“load more”** for performance if UnrealTalent roster grows similarly.
+- **High density of talent cards** → needs **pagination**, **lazy media**, or **“load more”** for performance if Unreal Connectionsroster grows similarly.
 - **Social proof first** (stats + logos) before deep service copy—reduces bounce for cold traffic.
 
 ---
@@ -142,7 +142,7 @@ This is the **scroll narrative** as reflected in the page content.
 
 ---
 
-## 9. Suggested mapping to UnrealTalent (next build steps)
+## 9. Suggested mapping to Unreal Connections(next build steps)
 
 1. Lock a **section order** similar to: **Hero → proof (stats or logos) → about → services → roster/cards → partners → CTA (careers or “work with us”) → contact → footer**.  
 2. Implement **one semantic `h1`**, then **`h2` per major band**, card names as **`h3`** inside each subsection.  

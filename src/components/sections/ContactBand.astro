@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import mainLogo from '../../assets/brand/UNREAL Main Logo.png';
+import mainLogo from '../../assets/brand/Isotipo Blanco.png';
 import type { Messages } from '../../i18n/types';
 import { socialProfiles } from '../../data/social';
 
@@ -10,8 +10,8 @@ interface Props {
 
 const { messages } = Astro.props;
 const t = messages.contact;
-const businessEmail = 'hello@unrealtalent.com';
-const businessPhoneHref = '+0000000000';
+const businessEmail = 'fabian@unrealtalent.net';
+const businessPhoneHref = '+506 8802 4631';
 const whatsappHref = socialProfiles.whatsapp;
 ---
 
@@ -25,22 +25,8 @@ const whatsappHref = socialProfiles.whatsapp;
 		</h2>
 		<p class="mb-8 max-w-[42rem] leading-relaxed text-ut-muted">{t.intro}</p>
 
-		<div class="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_minmax(0,0.85fr)]">
-			<div
-				class="relative flex min-h-56 items-center justify-center overflow-hidden rounded-lg border border-ut-scampi/20 bg-gradient-to-br from-ut-band-muted to-ut-mist px-6 py-8"
-			>
-				<div class="relative z-[1] w-full">
-					<Image
-						src={mainLogo}
-						alt={messages.a11y.brandLogo}
-						class="mx-auto h-auto w-full max-w-[16rem] object-contain sm:max-w-[18rem]"
-						widths={[220, 380, 600]}
-						sizes="(max-width: 1024px) 70vw, 288px"
-						format="png"
-						loading="lazy"
-					/>
-				</div>
-			</div>
+		<div class="grid items-start gap-8 grid-cols-1 md:grid-cols-2">
+			
 
 			<div>
 				<h3 class="mb-2 text-lg font-bold">{t.formTitle}</h3>
@@ -114,34 +100,50 @@ const whatsappHref = socialProfiles.whatsapp;
 							required></textarea>
 					</div>
 					<button
-						class="mt-3 w-full min-h-12 cursor-pointer rounded border-0 bg-ut-scampi px-5 py-2.5 font-sans text-xs font-extrabold uppercase tracking-wide text-[#fafaf9] hover:bg-ut-accent-hover focus-visible:outline-none"
+						class="mt-3 w-full min-h-12 cursor-pointer rounded border-0 bg-ut-scampi px-5 py-2.5 font-sans text-xs font-extrabold uppercase tracking-wide text-ut-bg hover:bg-ut-accent-hover focus-visible:outline-none"
 						type="submit"
 					>
 						{t.submit}
 					</button>
 				</form>
 			</div>
-
-			<aside class="rounded-xl border border-ut-scampi/20 bg-ut-band-muted p-5" aria-label={messages.a11y.pressAside}>
-				<h3 class="mb-2 text-base font-bold">{t.asideTitle}</h3>
-				<p class="mb-4 text-[0.9375rem] leading-relaxed text-ut-muted">{t.channelsLead}</p>
-				<ul class="m-0 list-none space-y-2 p-0">
-					<li class="text-[0.9375rem] leading-relaxed text-ut-muted">
-						<span class="font-semibold text-ut-text">{t.channelEmail}: </span>
-						<a class="font-semibold text-ut-scampi" href={`mailto:${businessEmail}`}>{businessEmail}</a>
-					</li>
-					<li class="text-[0.9375rem] leading-relaxed text-ut-muted">
-						<span class="font-semibold text-ut-text">{t.channelPhone}: </span>
-						<a class="font-semibold text-ut-scampi" href={`tel:${businessPhoneHref}`}>{t.phoneDisplay}</a>
-					</li>
-					<li class="text-[0.9375rem] leading-relaxed text-ut-muted">
-						<span class="font-semibold text-ut-text">{t.channelWhatsapp}: </span>
-						<a class="font-semibold text-ut-scampi" href={whatsappHref} rel="noopener noreferrer" target="_blank">
-							{t.phoneDisplay}
-						</a>
-					</li>
-				</ul>
-			</aside>
+			<div class="flex flex-col gap-4">
+				<aside class="rounded-xl border border-ut-scampi/20 bg-ut-cinder p-5" aria-label={messages.a11y.pressAside}>
+					<h3 class="mb-2 text-base font-bold text-white">{t.asideTitle}</h3>
+					<p class="mb-4 text-[0.9375rem] leading-relaxed text-white">{t.channelsLead}</p>
+					<ul class="m-0 list-none space-y-2 p-0">
+						<li class="text-[0.9375rem] leading-relaxed text-white">
+							<span class="font-semibold text-white">{t.channelEmail}: </span>
+							<a class="font-semibold text-white" href={`mailto:${businessEmail}`}>{businessEmail}</a>
+						</li>
+						<li class="text-[0.9375rem] leading-relaxed text-white">
+							<span class="font-semibold text-white">{t.channelPhone}: </span>
+							<a class="font-semibold text-white" href={`tel:${businessPhoneHref}`}>{t.phoneDisplay}</a>
+						</li>
+						<li class="text-[0.9375rem] leading-relaxed text-white">
+							<span class="font-semibold text-white">{t.channelWhatsapp}: </span>
+							<a class="font-semibold text-white" href={whatsappHref} rel="noopener noreferrer" target="_blank">
+								{t.phoneDisplay}
+							</a>
+						</li>
+					</ul>
+				</aside>
+				<div
+					class="relative flex min-h-56 items-center justify-center overflow-hidden rounded-lg border border-ut-scampi/20 bg-ut-cinder from-ut-band-muted to-ut-mist px-6 py-8"
+				>
+					<div class="relative z-[1] w-full">
+						<Image
+							src={mainLogo}
+							alt={messages.a11y.brandLogo}
+							class="mx-auto h-auto w-full max-w-[16rem] object-contain sm:max-w-[18rem]"
+							widths={[220, 380, 600]}
+							sizes="(max-width: 1024px) 70vw, 288px"
+							format="png"
+							loading="lazy"
+						/>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>

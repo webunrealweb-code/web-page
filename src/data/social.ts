@@ -3,8 +3,6 @@
  * (Kept in one place so header + footer stay in sync.)
  */
 export const socialProfiles = {
-	facebook: 'https://www.facebook.com/',
-	instagram: 'https://www.instagram.com/',
-	tiktok: 'https://www.tiktok.com/',
-	whatsapp: 'https://wa.me/',
+	instagram: 'https://www.instagram.com/unrealtalentgroup/',
+	whatsapp: 'https://wa.me/50688024631',
 } as const;

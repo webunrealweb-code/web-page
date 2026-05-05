@@ -18,7 +18,7 @@ interface Props {
 
 const {
 	title = 'UnrealTalent',
-	description = 'UnrealTalent — website coming soon.',
+	description = 'Unreal Connections— website coming soon.',
 	lang = 'en',
 	ogLocale,
 	robots = 'index, follow',
@@ -60,7 +60,7 @@ const defaultLangHref = site ? new URL('/en/', site).href : undefined;
 		<meta name="generator" content={Astro.generator} />
 		<meta name="robots" content={robots} />
 		<meta name="description" content={description} />
-		<meta name="theme-color" content="#6a65b1" />
+		<meta name="theme-color" content="#2450f9" />
 		<title>{title}</title>
 		{canonical && <link rel="canonical" href={canonical} />}
 		{canonical && altHref && defaultLangHref && (

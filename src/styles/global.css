@@ -4,23 +4,47 @@
    reachable from the CSS entry alone, which can drop utilities in dev or odd builds. */
 @source "../**/*.{astro,html,js,ts,mjs}";
 
+@font-face {
+	font-family: 'ITC Avant Garde Gothic';
+	src: url('../assets/fonts/ITC-Avant-Garde-Gothic-Bold.otf') format('opentype');
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eurostile LT Std';
+	src: url('../assets/fonts/Eurostile-LT-Std-Extended-2.otf') format('opentype');
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eurostile LT Std';
+	src: url('../assets/fonts/Eurostile-LT-Std-Bold-Extended-2.otf') format('opentype');
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+}
+
 @theme {
 	--color-ut-cinder: #040407;
-	--color-ut-scampi: #6a65b1;
-	--color-ut-mulled: #46446e;
-	--color-ut-text: #040407;
-	--color-ut-muted: #5a5878;
-	--color-ut-bg: #fafaf9;
-	--color-ut-accent-hover: #585298;
-	--color-ut-accent-soft: rgba(106, 101, 177, 0.18);
-	--color-ut-hero-tonal: #b4b1d4;
-	--color-ut-band-muted: #f0eff5;
-	--color-ut-mist: #e4e1ec;
-	--color-ut-pixel-a: #c9c5f0;
-	--color-ut-pixel-b: #ffffff;
+	--color-ut-scampi: #2450f9;
+	--color-ut-mulled: #142c8e;
+	--color-ut-text: #1d1d1d;
+	--color-ut-muted: #142c8e;
+	--color-ut-bg: #e4ddf3;
+	--color-ut-accent-hover: #142c8e;
+	--color-ut-accent-soft: rgba(36, 80, 249, 0.18);
+	--color-ut-hero-tonal: #c6bdba;
+	--color-ut-band-muted: #c6bdba;
+	--color-ut-mist: #e4ddf3;
+	--color-ut-pixel-a: #53017d;
+	--color-ut-pixel-b: #2450f9;
 
-	--font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
-	--font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+	--font-display: 'ITC Avant Garde Gothic', 'Syne', ui-sans-serif, system-ui, sans-serif;
+	--font-sans: 'Eurostile LT Std', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
 
 	--shadow-focus: 0 0 0 2px var(--color-ut-bg), 0 0 0 4px var(--color-ut-scampi);
 }

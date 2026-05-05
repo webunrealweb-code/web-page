@@ -30,13 +30,13 @@ const base =
 
 const variants = {
 	primary:
-		'border-transparent bg-ut-scampi text-[#fafaf9] hover:bg-ut-accent-hover focus-visible:bg-ut-accent-hover',
+		'border-transparent bg-ut-scampi text-ut-bg hover:bg-ut-accent-hover focus-visible:bg-ut-accent-hover',
 	secondary:
-		'border-ut-mulled bg-[#fafaf9] text-ut-cinder hover:bg-[#ebe9f2] focus-visible:bg-[#ebe9f2]',
+		'border-ut-mulled bg-ut-bg text-ut-cinder hover:bg-ut-mist focus-visible:bg-ut-mist',
 	ghost:
 		'border-transparent bg-transparent text-ut-scampi hover:bg-ut-accent-soft focus-visible:bg-ut-accent-soft',
 	heroGhost:
-		'rounded-full border border-white/35 bg-transparent text-slate-50 hover:bg-white/12 focus-visible:bg-white/12',
+		'rounded-full border border-ut-bg/35 bg-transparent text-ut-bg hover:bg-ut-bg/12 focus-visible:bg-ut-bg/12',
 } as const;
 
 const cls = [base, variants[variant], className].filter(Boolean).join(' ');

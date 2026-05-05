@@ -2,10 +2,11 @@
 interface Props {
 	name: string;
 	tags: readonly string[];
+	image?: string;
 	href?: string;
 }
 
-const { name, tags, href } = Astro.props;
+const { name, tags, image, href } = Astro.props;
 ---
 
 <li class="relative aspect-[3/4] list-none overflow-hidden bg-ut-cinder p-0">
@@ -19,13 +20,19 @@ const { name, tags, href } = Astro.props;
 		aria-hidden="true"
 	>
 	</div>
+	{
+		image ? (
+			<img
+				src={image}
+				alt={name}
+				class="h-full w-full object-cover opacity-85 mix-blend-screen"
+				loading="lazy"
+				decoding="async"
+			/>
+		) : null
+	}
 	<div
-		class="absolute inset-0 bg-[linear-gradient(160deg,rgba(106,101,177,0.35)_0%,transparent_45%),linear-gradient(135deg,var(--color-ut-mulled)_0%,var(--color-ut-cinder)_50%,#1a1830_100%)]"
-		aria-hidden="true"
-	>
-	</div>
-	<div
-		class="absolute inset-0 z-[1] flex flex-col justify-end bg-gradient-to-t from-[rgba(4,4,7,0.92)] via-transparent to-transparent px-[1.1rem] pb-[1.15rem] pt-16"
+		class="absolute inset-0 z-[1] flex flex-col justify-end bg-gradient-to-t from-[rgba(29,29,29,0.92)] via-transparent to-transparent px-[1.1rem] pb-[1.15rem] pt-16"
 	>
 		<p class="mb-1 text-[0.6875rem] font-semibold uppercase tracking-wide text-slate-100/75">{tags.join(' · ')}</p>
 		{

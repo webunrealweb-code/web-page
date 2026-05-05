@@ -1,0 +1,31 @@
+---
+description: Unreal Connections— structure, a11y, buttons, SEO (see AGENTS.md)
+alwaysApply: true
+---
+
+# Unreal Connections— workspace rules
+
+Read **`AGENTS.md`** for full checklists. Non‑negotiables:
+
+## Structure
+
+- **`src/pages/`:** routes only; pass **`BaseLayout`** SEO props (`title`, `description`, optional `ogImagePath`, `robots`, `canonicalPath`, `twitterSite`).
+- **`src/layouts/`:** document shell, skip link, global head SEO.
+- **`src/components/`:** reusable UI; use **`Button.astro`** for styled actions unless a raw native control is explicitly required.
+- **`public/`:** static assets; **no** `robots.txt` (use **`src/pages/robots.txt.ts`**).
+
+## Production SEO
+
+- Set **`PUBLIC_SITE_URL`** at build so **`@astrojs/sitemap`**, **canonical**, **absolute OG**, and **robots Sitemap** line emit.
+- Unique **`title`** + **`meta description`** per indexable page; **`noindex`** for non-public pages via **`robots`** prop.
+- Add **`ogImagePath`** (1200×630-style asset) when a share image exists; otherwise accept **`summary`** card without image.
+
+## Accessibility
+
+- **`main id="main-content"`** on every page; **skip link** stays first interactive affordance in tab order (after address bar).
+- Native **`button` / `a`** for actions; **44×44px** minimum targets for primary controls; **`aria-label`** for icon-only.
+- Respect **`prefers-reduced-motion`**; user **Accessibility options** panel sets **`data-ut-*`** on `<html>` — keep that contract stable.
+
+## Commands
+
+- Run **`npm run build`** with **`PUBLIC_SITE_URL`** set before treating SEO work as done.

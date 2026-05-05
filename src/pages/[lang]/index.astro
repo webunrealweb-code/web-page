@@ -9,7 +9,7 @@ import ServicesBand from '../../components/sections/ServicesBand.astro';
 import PartnersBand from '../../components/sections/PartnersBand.astro';
 import ContactBand from '../../components/sections/ContactBand.astro';
 import PartnerCampaignsBand from '../../components/sections/PartnerCampaignsBand.astro';
-import { stats, talentRoster, brandLogos, partnerVideoSources } from '../../data/homepage';
+import { talentRoster, brandLogos } from '../../data/homepage';
 import { getMessages, type Lang } from '../../i18n';
 import { homePath, isLang, langs } from '../../i18n/paths';
 
@@ -23,16 +23,6 @@ if (!isLang(langParam ?? '')) {
 }
 const lang = langParam as Lang;
 const messages = getMessages(lang);
-
-const statsRows = stats.map((s, i) => ({
-	value: s.value,
-	label: messages.statsLabels[i] ?? '',
-}));
-
-const partnerVideos = messages.partners.showcase.map((row, i) => ({
-	...row,
-	videoSrc: partnerVideoSources[i] ?? partnerVideoSources[0]!,
-}));
 
 const canonicalPath = homePath(lang);
 ---
@@ -48,10 +38,10 @@ const canonicalPath = homePath(lang);
 	<SiteHeader lang={lang} messages={messages} />
 	<main id="main-content" tabindex="-1">
 		<Hero lang={lang} messages={messages} />
-		<StatsGrid stats={statsRows} ariaLabel={messages.a11y.statsRegion} />
+		<StatsGrid stats={messages.statsLabels} ariaLabel={messages.a11y.statsRegion} />
 		<AboutBand messages={messages} />
 		<ServicesBand talents={talentRoster} messages={messages} />
-		<PartnerCampaignsBand messages={messages} partnerVideos={partnerVideos} />
+		<PartnerCampaignsBand messages={messages} />
 		<PartnersBand brandLogos={brandLogos} messages={messages} />
 		<ContactBand messages={messages} />
 	</main>

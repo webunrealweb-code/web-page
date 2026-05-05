@@ -1,4 +1,4 @@
-# UnrealTalent — agent and contributor handbook
+# Unreal Connections— agent and contributor handbook
 
 This document defines **repository layout**, **coding standards**, and expectations for **accessibility**, **reusability**, and **SEO**. Automated assistants and humans should follow it when changing this project.
 

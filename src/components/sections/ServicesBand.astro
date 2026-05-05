@@ -1,11 +1,18 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import TalentCard from './TalentCard.astro';
-import type { Messages } from '../../i18n/types';
+import type { Messages, ServiceIconKey } from '../../i18n/types';
+import talentManagementIcon from '../../assets/services/talent-management.svg';
+import brandPartnershipsIcon from '../../assets/services/brand-partnerships.svg';
+import productionIcon from '../../assets/services/production.svg';
+import creativeDevelopmentIcon from '../../assets/services/creative-development.svg';
+import eventsExperiencesIcon from '../../assets/services/events-experiences.svg';
+import strategicConsultingIcon from '../../assets/services/strategic-consulting.svg';
 
 interface Talent {
 	name: string;
 	tags: readonly string[];
+	image?: string;
 }
 
 interface Props {
@@ -15,6 +22,14 @@ interface Props {
 
 const { talents, messages } = Astro.props;
 const t = messages.services;
+const serviceIcons: Record<ServiceIconKey, string> = {
+	'talent-management': talentManagementIcon.src,
+	'brand-partnerships': brandPartnershipsIcon.src,
+	production: productionIcon.src,
+	'creative-development': creativeDevelopmentIcon.src,
+	'events-experiences': eventsExperiencesIcon.src,
+	'strategic-consulting': strategicConsultingIcon.src,
+};
 ---
 
 <section class="w-full scroll-mt-20 bg-ut-cinder text-slate-50" id="services" aria-labelledby="services-heading">
@@ -32,34 +47,22 @@ const t = messages.services;
 		/>
 
 		<div class="mb-12 grid gap-10 md:grid-cols-2">
-			<div class="flex items-center gap-4">
-				<img
-					src="/images/services/talent-management.svg"
-					alt=""
-					aria-hidden="true"
-					class="h-full max-h-24 w-auto shrink-0 self-stretch"
-					loading="lazy"
-					decoding="async"
-				/>
-				<div class="min-w-0">
-					<h3 class="mb-3 font-sans text-[0.875rem] font-bold uppercase tracking-wide text-ut-scampi sm:text-[0.9375rem]">{t.block1Title}</h3>
-					<p class="m-0 leading-relaxed text-slate-200/85">{t.block1Body}</p>
+			{t.services.map((service) => (
+				<div class="flex items-center gap-4">
+					<img
+						src={serviceIcons[service.icon]}
+						alt=""
+						aria-hidden="true"
+						class="h-full max-h-24 w-auto shrink-0 self-stretch"
+						loading="lazy"
+						decoding="async"
+					/>
+					<div class="min-w-0">
+						<h3 class="mb-3 font-sans text-[0.875rem] font-bold uppercase tracking-wide text-ut-scampi sm:text-[0.9375rem]">{service.title}</h3>
+						<p class="m-0 leading-relaxed text-slate-200/85">{service.body}</p>
+					</div>
 				</div>
-			</div>
-			<div class="flex items-center gap-4">
-				<img
-					src="/images/services/brand-partnerships.svg"
-					alt=""
-					aria-hidden="true"
-					class="h-full max-h-24 w-auto shrink-0 self-stretch"
-					loading="lazy"
-					decoding="async"
-				/>
-				<div class="min-w-0">
-					<h3 class="mb-3 break-words [overflow-wrap:anywhere] font-sans text-[0.875rem] font-bold uppercase tracking-wide text-ut-scampi sm:text-[0.9375rem]">{t.block2Title}</h3>
-					<p class="m-0 leading-relaxed text-slate-200/85">{t.block2Body}</p>
-				</div>
-			</div>
+			))}
 		</div>
 
 		<h3 class="mb-2 font-display text-2xl font-extrabold uppercase tracking-wide text-white" id="talent">
@@ -71,13 +74,13 @@ const t = messages.services;
 		<p class="mb-8">
 			<a
 				href="#contact"
-				class="font-sans text-sm font-semibold text-ut-scampi underline underline-offset-4 transition hover:text-ut-accent-hover focus-visible:outline-none focus-visible:[box-shadow:0_0_0_2px_#fff,0_0_0_4px_var(--color-ut-scampi)]"
+				class="font-sans text-sm font-semibold text-ut-scampi underline underline-offset-4 transition hover:text-ut-accent-hover focus-visible:outline-none focus-visible:[box-shadow:0_0_0_2px_var(--color-ut-bg),0_0_0_4px_var(--color-ut-scampi)]"
 			>
 				{t.rosterContactCta}
 			</a>
 		</p>
 		<ul class="m-0 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
-			{talents.map((tal) => <TalentCard name={tal.name} tags={tal.tags} />)}
+			{talents.map((tal) => <TalentCard name={tal.name} tags={tal.tags} image={tal.image ?? ''} />)}
 		</ul>
 	</div>
 </section>
